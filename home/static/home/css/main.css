@@ -1,0 +1,439 @@
+
+:root {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@0,200;0,300;0,400;0,500;0,600;0,700&display=swap');
+	--primary-color: #1a1f25;
+	--secondary-color: #272a35;
+	--text-color: #4d5665;
+	--blue: #0339fa;
+	--green: #9ff740;
+	--red: #f75528;
+	--color: #354156;
+	--main-font: 'Montserrat', sans-serif;
+}
+/*-----------------------------------startMAIN------------------------------------------*/
+html{
+	height: 100%;
+}
+
+body{
+	display: flex;
+	justify-content: start;
+	background: var(--primary-color);
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+header{
+	position: fixed;
+	z-index: 100;
+}
+
+content{
+	background: var(--secondary-color);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 50%;
+	margin: 30px 0 50px 300px;
+	border-radius: 10px;
+
+}
+
+aside{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: var(--secondary-color);
+	width: 15%;
+	margin: 30px 0 50px 10px;
+	border-radius: 10px;
+}
+
+footer{
+	position: fixed;
+	background: var(--secondary-color);
+	width: 100%;
+	height: 20px;
+	bottom: 0;
+	left: 0;
+	border-radius: 10px 10px 0 0;
+}
+
+a{
+	text-decoration: none;
+}
+
+li{
+	list-style-type:none;
+}
+
+textarea:focus, input:focus {
+    outline: none !important;
+}
+button{
+	border:none;
+}
+/*-----------------------------------endMAIN------------------------------------------*/
+/*-----------------------------------startLOGO------------------------------------------*/
+.logo_img{
+	position: relative;
+	height: 80px;
+	transition: 1s;
+}
+
+.logo{
+	position: fixed;
+	width: max-content;
+	height: 80px;
+	right: 50px;
+	top: 20px;
+}
+
+.logo::before{
+	content: '';
+	position: absolute;
+	display: block;
+	height: 30px;
+	width: 50px;
+	background: var(--text-color);
+	left: 10px;
+	top: 80px;
+	border-radius:30px;
+	transform: rotateX(80deg);
+	filter: blur(10px);
+	transition: 1s;
+}
+
+/*-----------------------------------endLOGO------------------------------------------*/
+
+
+/*-----------------------------------------startNAV--------------------------------------------------*/
+.nav{
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 50px;
+	height:calc(100% - 30px);
+	padding-right: 5px;
+	padding-left: 5px;
+	background:var(--secondary-color);
+	transition:width 0.3s;
+	border-radius: 0 20px 20px 0;
+}
+
+.icon_nav_item{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	color: var(--text-color);
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.icon_nav_item:hover{
+	color: var(--blue);
+	background: var(--color);
+
+}
+
+.nav_items{
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+
+}
+
+.nav_item{
+	position: relative;
+	margin-bottom: 40px;
+}
+
+.nav_item:first-child {
+	margin-top:30px;
+
+ }
+.nav_item:last-child::before{
+	content: '';
+	position: absolute;
+	height: 2px;
+	width: 100%;
+	background: var(--text-color);
+	left: 0;
+	bottom: -40px;
+	opacity: 0.5;
+}
+
+.nav_item_content{
+	display: flex;
+	align-items: center;
+}
+
+.nav_item_name{
+	margin-left: 15px;
+	display: none;
+	font-family: var(--main-font);
+	font-size: 14px;
+	font-weight: 500;
+}
+/*-----------------------------------------startBURGER--------------------------------------------------*/
+.burger{
+	position: relative;
+	height: 3px;
+	width: 30px;
+	background: var(--text-color);
+}
+.burger::after{
+	content: '';
+	position: absolute;
+	display: block;
+	height: 3px;
+	width: 30px;
+	background: inherit;
+	left: 0;
+	top: -10px;
+	transition: 0.3s;
+}
+.burger::before{
+	content: '';
+	position: absolute;
+	display: block;
+	height: 3px;
+	width: 30px;
+	background: inherit;
+	left: 0;
+	bottom: -10px;
+	transition: 0.3s;
+}
+.burger:hover::after{
+	left: 10px;
+	transition: 0.3s;
+
+}
+.burger:hover::before{
+	left: -10px;
+	transition: 0.3s;
+}
+.burger_active{
+	position: relative;
+	background: var(--blue);
+	transition: 0.3s;
+
+}
+#container_burger{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: max-content;
+	height: 23px;
+	margin-bottom: 40px;
+	margin-top: 30px;
+	padding: 10px;
+}
+.burger_active::before{
+	content: '';
+	position: absolute;
+	display: block;
+	height: 3px;
+	background: inherit;
+	left: 0;
+	bottom: -1.5px;
+	width: 30px;
+	transform: rotatez(45deg);
+	transition: 0.3s;
+}
+.burger_active::after{
+	content: '';
+	position: absolute;
+	display: block;
+	height: 3px;
+	background: inherit;
+	left: 0;
+	top: -1.5px;
+	width: 30px;
+	transform: rotatez(-45deg);
+	transition: 0.3s;
+}
+/*-----------------------------------------endBURGER--------------------------------------------------*/
+/*-----------------------------------------startPROFILE--------------------------------------------------*/
+.profile_date{
+	position: relative;
+	display: flex;
+	justify-content: start;
+	width: 100%;
+}
+.profile_date::before{
+	content: '';
+	position: absolute;
+	height: 2px;
+	width: 100%;
+	background: var(--text-color);
+	left: 0;
+	bottom: -20px;
+	opacity: 0.5;
+}
+.profile_date::after{
+	content: '';
+	position: absolute;
+	height: 2px;
+	width: 100%;
+	background: var(--text-color);
+	left: 0;
+	top: -20px;
+	opacity: 0.5;
+}
+.profile_foto{
+	height: 46px;
+	width: 46px;
+	border-radius: 20px;
+	border: #0339fa solid 2px;
+}
+.user_info{
+	padding: 5px 0;
+	margin-left: 15px;
+	display: none;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.user_status{
+	color: var(--text-color);
+	font-family: var(--main-font);
+	font-size: 12px;
+	font-weight: 600;
+}
+.profile_status{
+	width: max-content;
+	position: relative;
+	color: var(--green);
+	font-family: var(--main-font);
+	font-size: 10px;
+	font-weight: 400;
+}
+.profile_status::after{
+	content: '';
+	position: absolute;
+	height: 3px;
+	width: 3px;
+	border-radius: 100px;
+	background:var(--green);
+	right: -5px;
+	top: 0;
+}
+
+.user_name{
+	color: white;
+	font-family: var(--main-font);
+	font-size: 14px;
+	font-weight: 600;
+}
+/*-----------------------------------------endPROFILE--------------------------------------------------*/
+/*-----------------------------------------endNAV--------------------------------------------------*/
+
+/*-----------------------------------------startCONTENT--------------------------------------------------*/
+
+.main_content{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 15px;
+	width: 90%;
+	min-height: 500px;
+}
+.trainer_container{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.left_container,.right_container{
+	position: relative;
+	border-radius: 10px;
+	width: calc(50% - 45px);
+	color: white;
+	background: var(--text-color);
+	height: 120px;
+	margin: 30px 0;
+	padding: 20px 20px;
+
+
+}
+
+.answer{
+	resize: none;
+	height: 100%;
+	width: 100%;
+	color: white;
+	font-family: var(--main-font);
+	font-size: 14px;
+	font-weight: 600;
+	background: transparent;
+	padding: 0;
+	border: none;
+}
+.en_text{
+	padding: 0;
+	margin: 0;
+	font-family: var(--main-font);
+	font-size: 14px;
+	font-weight: 600;
+}
+.title_trainer{
+	position: relative;
+	font-family: var(--main-font);
+	font-size: 34px;
+	font-weight: 800;
+	color: white;
+}
+.title_trainer::before{
+	content: '';
+	position: absolute;
+	height: 2px;
+	width: 150%;
+	background: var(--text-color);
+	left: -25%;
+	bottom: -10px;
+	opacity: 0.5;
+}
+.container_btn{
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+
+}
+.container_btn::before{
+	content: '';
+	position: absolute;
+	height: 2px;
+	width: 100%;
+	background: var(--text-color);
+	left: 0;
+	bottom: -50px;
+	opacity: 0.5;
+}
+.btn_check{
+	padding: 10px 25px;
+	margin-right: 10px;
+	font-family: var(--main-font);
+	font-size: 16px;
+	font-weight: 600;
+	background: #334172;
+	border-radius: 10px;
+	color: white;
+}
+.btn_reset{
+	padding: 10px 15px;
+	font-family: var(--main-font);
+	font-size: 18px;
+	font-weight: 600;
+	background: #313b47;
+	border-radius: 10px;
+	color: white;
+}
+
+/*-----------------------------------------startCONTENT--------------------------------------------------*/

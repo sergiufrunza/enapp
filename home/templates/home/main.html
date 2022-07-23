@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/css/main.css' %}">
+    <title>EnApp</title>
+</head>
+<body>
+<div class="logo" id="logo">
+    <img src="{% static 'home/img/logoEn.png' %}" alt="logo" class="logo_img" id="logo_img">
+</div>
+{% block header %}
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block aside %}
+{% endblock %}
+{% block footer %}
+{% endblock %}
+    <script src="{% static 'home/js/main.js' %}"></script>
+</body>
+</html>
