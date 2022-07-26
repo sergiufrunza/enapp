@@ -20,14 +20,42 @@ const navItem = document.getElementsByClassName("nav_item_name");
 const LeftMenuIt = document.getElementsByClassName("icon_nav_item");
 const LeftMenuContainer = document.getElementById("nav_items");
 const ProfileFoto = document.getElementById("profile_foto");
-
-
+const textareaContainer = document.getElementById("answer");
+const Entranslate = document.getElementById("en_text");
+const href_btn = document.getElementById("a_check")
+const check_btn = document.getElementById("btn_check")
+const md_txt = document.getElementById("md_text")
 function delay2(){
     let i = 0;
    profile.style.display = "flex";
    for ( i in navItem){
        navItem[i].style.display = "block";
    }
+}
+function get_info(){
+    let en = textareaContainer.value;
+    let md = md_txt.innerHTML;
+    textareaContainer.value = "";
+        $.ajax({
+            type: "POST",
+            url: '/',
+            async: false,
+            // cache: false,
+            data: {
+                md: md,
+                en: en
+             },
+             dataType: 'json'
+             });
+            href_btn.href = '/?md=' + md + '&en=' + en
+
+}
+check_btn.onclick = function() {
+    get_info()
+            }
+document.getElementById("btn_reset").onclick = function() {
+        textareaContainer.value = "";
+        window.location.href="/";
 }
 containerBurger.onclick = function click(){
 let i = 0;
