@@ -331,11 +331,15 @@ button{
 	font-size: 14px;
 	font-weight: 600;
 }
+.icon_btn{
+	margin: 0;
+	padding: 0;
+}
 /*-----------------------------------------endPROFILE--------------------------------------------------*/
 .btn_log{
+	margin:20px auto 0;
 	width: 50px;
-	padding: 5px 0;
-	margin-top: 50px;
+	padding: 8px 0 5px 0;
 	background: #313b47;
 	border-radius: 10px;
 	color: white;

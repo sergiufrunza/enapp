@@ -33,56 +33,31 @@ function delay2(){
        navItem[i].style.display = "block";
    }
 }
-
-function login(){
-    $.ajax({
-            type: "GET",
-            url: '/',
-            data: {
-                logged: true
-             },
-             dataType: 'json'
-             });
-            window.location.href = '/?logged=true';
+function PageRestart(){
+        textareaContainer.value = "";
+        window.location.href="/"
 }
 
-function get_info(){
-    let en = textareaContainer.value;
-    let md = md_txt.innerHTML;
-    textareaContainer.value = "";
-        $.ajax({
-            type: "GET",
-            url: window.location.href,
-            data: {
-                md: md,
-                en: en
-             },
-             dataType: 'json'
-             });
-            if (window.location.href.indexOf('logged') != -1){
-                window.location.href = window.location.href + '&md=' + md + '&en=' + en
-            }
-            else {
-                window.location.href = '/'
-            }
-
-
-}
 
 check_btn.onclick = function(){
-    get_info()
-            }
-if (btn_log){
-btn_log.onclick = function(){
-    login()
+    let en = textareaContainer.value;
+    let md = md_txt.innerHTML;
+    $.ajax({
+        url:'answer',
+        method:'get',
+        data:
+        {
+            'en': en,
+            'md': md
+        },
+    dataType:"json"
+    });
+    setTimeout(PageRestart, 150);
 }
-}
-    reset_btn.onclick = function() {
-        textareaContainer.value = "";
-        window.location.href="/?logged=true";
+reset_btn.onclick = function() {
+        setTimeout(PageRestart, 100);
 
 }
-if (!btn_log) {
     containerBurger.onclick = function click() {
         let i = 0;
         if (LeftMenu.style.width === "250px") {
@@ -115,5 +90,5 @@ if (!btn_log) {
         }
         return 0;
     };
-}
+
 

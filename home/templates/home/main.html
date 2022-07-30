@@ -13,15 +13,20 @@
 <div class="logo" id="logo">
     <img src="{% static 'home/img/logoEn.png' %}" alt="logo" class="logo_img" id="logo_img">
 </div>
-{% block header %}
-{% endblock %}
+    <header>
+        {% include "home/includes/header.html" %}
+    </header>
 {% block content %}
 {% endblock %}
-{% block aside %}
-{% endblock %}
-{% block footer %}
-{% endblock %}
+        <aside >
+            {% include "home/includes/right-sidebar.html" %}
+        </aside>
+    <footer>
+{% include "home/includes/footer.html" %}
+    </footer>
+{% csrf_token %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'home/js/main.js' %}"></script>
+
 </body>
 </html>

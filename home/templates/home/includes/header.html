@@ -14,7 +14,6 @@
     </div>
 
 </div>
-    {% if logged %}
     <ul class="nav_items" id="nav_items">
         <li class="nav_item">
             <a href="" class="nav_link">
@@ -70,7 +69,6 @@
                 </div>
         </a></li>
     </ul>
-        {% else %}
         <button type="button" class="btn_log" id="btn_log">
             <svg width="15" height="15" class="icon_btn" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<rect opacity="0.3" x="8.5" y="11" width="12" height="2" rx="1" fill="currentColor"></rect>
@@ -78,6 +76,5 @@
 										<path opacity="0.5" d="M16 5V6C16 6.55228 15.5523 7 15 7C14.4477 7 14 6.55228 14 6C14 5.44772 13.5523 5 13 5H6C5.44771 5 5 5.44772 5 6V18C5 18.5523 5.44771 19 6 19H13C13.5523 19 14 18.5523 14 18C14 17.4477 14.4477 17 15 17C15.5523 17 16 17.4477 16 18V19C16 20.1046 15.1046 21 14 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H14C15.1046 3 16 3.89543 16 5Z" fill="currentColor"></path>
 									</svg>
         </button>
-{% endif %}
 </nav>
 {% endblock %}

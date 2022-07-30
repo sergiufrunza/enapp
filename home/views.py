@@ -1,38 +1,46 @@
-
+from django.views.generic.base import TemplateView
 from django.shortcuts import *
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.template import RequestContext
+from home.models import *
 from . import source
 import random
-import json
-def index(request):
-    x = random.randint(0, len(source.dictionary)-1)
-    if request.GET.get("en"):
-        geten = request.GET.get("en")
-        getmd = request.GET.get("md")
-        data = checkwords(geten, getmd)
-        data['logged'] = True
-        return render(request, 'home/homepage.html', context=data)
 
-    elif request.GET.get('logged') and not request.GET.get("en"):
-        data = {}
-        data['logged'] = True
-        data['md'] = source.dictionary[x]["md"]
-        return render(request, 'home/homepage.html', context=data)
-    else:
-        data = {
-            "md": source.dictionary[x]["md"]
-        }
-        return render(request, 'home/homepage.html')
+Date = {}
 
 
+def Buffer(answer, n):
+    global Date
+    if n == 1:
+        Date = answer
+        return Date
+    elif n == 2:
+        Date = {}
+    if n == 0:
+        return Date
 
 
+class MainView(TemplateView):
+    template_name = 'home/homepage.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if len(Buffer({}, 0)):
+            context = Buffer({}, 0)
+            Buffer({}, 2)
+        else:
+            x = random.randint(0, len(source.dictionary) - 1)
+            context['md'] = source.dictionary[x]['md']
+        return context
 
 
+def GetAnswer(request):
+    en = request.GET.get("en")
+    md = request.GET.get("md")
+    return JsonResponse(Buffer(CheckWords(en, md),1))
 
-def checkwords(en ,md):
 
+def CheckWords(en, md):
     getenarray = en.split()
     for a in source.dictionary:
         if a['md'] == md:
@@ -53,7 +61,6 @@ def checkwords(en ,md):
                         "correct": True,
                         "word": getenarray[b]
                     }
-
 
     data = {
         "md": md,
