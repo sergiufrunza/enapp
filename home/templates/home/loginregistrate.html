@@ -1,0 +1,29 @@
+
+{% extends "home/main.html" %}
+
+{% block content %}
+    <content >
+        <div class="bg_container_form">
+
+<div class="form_reg_and_log">
+<div class="exit_form" id="exit_form" ></div>
+    <div class="btn_reg_and_log">
+        <a href="{% url "SingIn" %}" class="btn btn_login_form" >Sing In</a>
+        <a href="{% url "LogIn" %}" class="btn btn_reg_form" >Log In</a>
+    </div>
+        <form method="post" class="form">
+        {% csrf_token %}
+        {% block forms %}
+            {% if title == "Log In" %}
+                {% include "home/includes/login.html" %}
+            {% endif %}
+            {% if title == "Sing In" %}
+                {% include "home/includes/singin.html" %}
+
+            {% endif %}
+            {% endblock %}
+        </form>
+    </div>
+</div>
+    </content>
+{% endblock %}

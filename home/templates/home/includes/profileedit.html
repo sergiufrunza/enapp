@@ -1,0 +1,12 @@
+  {% block content %}
+    <form method="post" class="form form_profile" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form_error">{{ profile_form.non_field_errors }}</div>
+    {% for f in profile_form %}
+        <div class="form_items" ><label class="{% if f.id_for_label == 'id_avatar' %}form_label_upload{% else %}form_label{% endif %}" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</div>
+            <div class="form_error">{{ f.errors }}</div>
+
+    {% endfor %}
+    <button type="submit" class="btn_save_profile">Save</button>
+    </form>
+{% endblock %}

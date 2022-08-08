@@ -1,0 +1,10 @@
+
+{% block content %}
+    <div class="form_error">{{ form.non_field_errors }}</div>
+    {% for f in form %}
+        <div class="form_items" ><label class="form_label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}{% if f.id_for_label == "pass1" or  f.id_for_label == "pass2"%}
+            <button type="button" id="{%  if f.id_for_label == "pass1"  %}{{ "password1" }}{% endif %}{%  if f.id_for_label == "pass2"  %}{{ "password2" }}{% endif %}">👁</button>{% endif %}</div>
+{#               <div class="form_error">f.errors</div>#}
+    {% endfor %}
+    <button type="submit" class="btn btn_submit_form">Sing In</button>
+{% endblock %}

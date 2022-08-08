@@ -25,66 +25,78 @@ const check_btn = document.getElementById("btn_check");
 const md_txt = document.getElementById("md_text");
 const btn_log = document.getElementById("btn_log");
 const reset_btn = document.getElementById("btn_reset");
+const password2 = document.getElementById("pass2");
+const password1 = document.getElementById("pass1");
+const eye1 = document.getElementById("password1");
+const eye2 = document.getElementById("password2");
+const exit_form = document.getElementById("exit_form");
+const cor = document.getElementById("cor");
+const incor = document.getElementById("incor");
+if(cor){
+    cor.style.width = cor.dataset.correct+"%"
+    incor.style.width = incor.dataset.incorrect+"%"
+}
+function Checkinputtype(a, b) {
+    if (b.type === "password") {
+        a.style.color = "var(--blue)"
+        b.type = "text"
+    } else {
+        a.style.color = "var(--text-color)"
+        b.type = "password"
+    }
+}
+if(eye1) {
+    eye1.onclick = function () {
+        Checkinputtype(eye1, password1)
+    }
 
-function delay2(){
-    let i = 0;
+    if (eye2) {
+        eye2.onclick = function () {
+            Checkinputtype(eye2, password2)
+        }
+    }
+    exit_form.onclick = function () {
+        window.location.href = "/"
+    }
+}
+
+
+
+
+function delay(){
    profile.style.display = "flex";
-   for ( i in navItem){
-       navItem[i].style.display = "block";
+   for ( let element of navItem ){
+       element.style.display = "block";
    }
 }
-
-function login(){
-    $.ajax({
-            type: "GET",
-            url: '/',
-            data: {
-                logged: true
-             },
-             dataType: 'json'
-             });
-            window.location.href = '/?logged=true';
+function PageRestart(){
+        textareaContainer.value = "";
+        document.location.reload(true)
 }
 
-function get_info(){
+if (check_btn){
+check_btn.onclick = function(){
     let en = textareaContainer.value;
     let md = md_txt.innerHTML;
-    textareaContainer.value = "";
-        $.ajax({
-            type: "GET",
-            url: window.location.href,
-            data: {
-                md: md,
-                en: en
-             },
-             dataType: 'json'
-             });
-            if (window.location.href.indexOf('logged') != -1){
-                window.location.href = window.location.href + '&md=' + md + '&en=' + en
-            }
-            else {
-                window.location.href = '/'
-            }
-
-
+    $.ajax({
+        url:'answer-mgFWETBrxIzdJwwA/',
+        method:'get',
+        data:
+        {
+            'en': en,
+            'md': md
+        },
+    dataType:"json"
+    });
+    setTimeout(PageRestart, 250);
 }
 
-check_btn.onclick = function(){
-    get_info()
-            }
-if (btn_log){
-btn_log.onclick = function(){
-    login()
+reset_btn.onclick = function() {
+        setTimeout(PageRestart, 200);
 }
 }
-    reset_btn.onclick = function() {
-        textareaContainer.value = "";
-        window.location.href="/?logged=true";
-
-}
-if (!btn_log) {
-    containerBurger.onclick = function click() {
-        let i = 0;
+if(containerBurger){
+containerBurger.onclick = function click() {
         if (LeftMenu.style.width === "250px") {
             LeftMenuContainer.style.width = null;
             LeftMenu.style.width = "50px";
@@ -95,7 +107,7 @@ if (!btn_log) {
             Burger.classList.toggle("burger");
             Burger.classList.toggle("burger_active");
             profile.style.display = "none";
-            for (i in navItem) {
+            for ( let i=0; i<navItem.length; i++) {
                 LeftMenuIt[i].style.justifyContent = "end";
                 navItem[i].style.display = "none";
             }
@@ -108,12 +120,13 @@ if (!btn_log) {
             LeftMenu.style.alignItems = "flex-start";
             Burger.classList.toggle("burger_active");
             Burger.classList.toggle("burger");
-            setTimeout(delay2, 200);
-            for (i in LeftMenuIt) {
-                LeftMenuIt[i].style.justifyContent = "start";
+            setTimeout(delay, 200);
+            for ( let element of LeftMenuIt ) {
+                element.style.justifyContent = "start";
             }
         }
-        return 0;
-    };
+    }
 }
+
+
 

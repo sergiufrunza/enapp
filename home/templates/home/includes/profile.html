@@ -1,0 +1,36 @@
+{% block content %}
+{% load static %}
+
+    <div class="user_profile">
+        <div class="left_content_profile">
+            <img class="img_profile_user" src="{{user.avatar.url}}" alt="">
+            <a href="{% url 'EditProfile' %}" class="btn_profile">Edit Profile</a>
+    </div>
+            <div class="right_content_profile">
+
+            <div class="info_profile_user">
+                <span class="user_name_profile">Name: {{ user.user_name }} </span>
+                <span class="user_status_profile">Status: {{ user.user_status }}</span>
+            </div>
+            <div class="profile_statistic">
+            <div class="statisticbloc">
+                <span class="statistic correct">
+                   {{ user.correct }}
+                </span>
+                <span class="statistic incorrect">
+                    {{ user.incorrect }}
+                </span>
+            </div>
+                <div class="container_bar">
+                    <div class="bar_statistic cor" id="cor" data-correct={{correct}}></div>
+                    <div class="bar_statistic incor" id="incor" data-incorrect={{incorrect}}></div>
+                    </div>
+            </div>
+
+    </div>
+    </div>
+
+
+
+
+{% endblock %}

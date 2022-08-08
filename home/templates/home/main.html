@@ -6,22 +6,28 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'home/css/main.css' %}">
-    <title>EnApp</title>
+    <link rel="stylesheet" href="{% static 'home/css/styles.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    <title>{{ title }}</title>
 </head>
 <body>
 <div class="logo" id="logo">
-    <img src="{% static 'home/img/logoEn.png' %}" alt="logo" class="logo_img" id="logo_img">
+    <img src="{% static 'favicon.ico' %}" alt="logo" class="logo_img" id="logo_img">
 </div>
-{% block header %}
-{% endblock %}
+    <header>
+        {% include "home/includes/header.html" %}
+    </header>
 {% block content %}
 {% endblock %}
-{% block aside %}
-{% endblock %}
-{% block footer %}
-{% endblock %}
+        <aside >
+            {% include "home/includes/right-sidebar.html" %}
+        </aside>
+    <footer>
+{% include "home/includes/footer.html" %}
+    </footer>
+{% csrf_token %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'home/js/main.js' %}"></script>
+
 </body>
 </html>

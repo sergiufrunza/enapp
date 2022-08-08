@@ -1,0 +1,44 @@
+{% load static %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+<div class="main_content">
+<h1 class="title_trainer">Md - En</h1>
+<div class="trainer_container">
+    <div class="left_container">
+        <p class="md_text" id="md_text">{{ md }}</p>
+    </div>
+    <div class="right_container">
+            {% if en %}
+                {% for word in en %}
+                    {% if word.correct %}
+                        <span class="en_text" id="en_text" style="color: #9ff740;">{{ word.word }}</span>
+                        {% else %}
+                        <span class="en_text" id="en_text" style="color: #f75528;" >{{ word.word }}</span>
+                    {% endif %}
+                {% endfor %}
+                    {% endif %}
+            <textarea name="answer" class="answer" id="answer"
+            {% if en %}
+                    style="display: none"
+                    {% endif %}>
+
+            </textarea>
+    </div>
+</div>
+    <div class="container_btn">
+        <button type="button" class="btn_check" id="btn_check">
+            Check it out
+        </button>
+        <button type="button" class="btn_reset" id="btn_reset">
+            <svg class="icon_btn" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 14.931 15">
+                <g transform="translate(-2.09 -1.989)">
+                    <path   d="M16.37,3.049V6.082a.681.681,0,0,1-.681.681H12.622a.681.681,0,0,1-.681-.784.716.716,0,0,1,.716-.579h1.465A6.133,6.133,0,0,0,3.456,8.876a.681.681,0,0,1-.681.613h0a.681.681,0,0,1-.681-.75,7.5,7.5,0,0,1,12.914-4.4V3.015a.681.681,0,0,1,.784-.681.716.716,0,0,1,.579.716Z" transform="translate(0 0)" fill="currentColor"/>
+                    <path  d="M4,30.44V27.407a.681.681,0,0,1,.681-.681H7.748a.681.681,0,0,1,.681.784.716.716,0,0,1-.716.579H6.249a6.133,6.133,0,0,0,10.665-3.476A.681.681,0,0,1,17.6,24h0a.681.681,0,0,1,.681.75,7.5,7.5,0,0,1-12.914,4.4v1.329a.681.681,0,0,1-.784.681A.716.716,0,0,1,4,30.44Z" transform="translate(-1.259 -14.511)" fill="currentColor" opacity="0.3"/>
+                </g>
+            </svg>
+        </button>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
