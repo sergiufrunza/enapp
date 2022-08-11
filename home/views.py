@@ -54,12 +54,11 @@ class LevelView(DataMixin, TemplateView):
         else:
             x = random.randint(0, len(dictionary) - 1)
             context['md'] = dictionary[x]['md']
-        context['title'] = "Level" + str(kwargs['lvl'])
-        return dict(list(context.items()))
+        c_def = self.get_user_context(title="Level"+str(kwargs['lvl']))
+        return dict(list(context.items()) + list(c_def.items()))
 
 
-
-class MainView(ListView):
+class MainView(DataMixin, ListView):
     template_name = 'home/homepage.html'
     model = Level
     context_object_name = "level"
@@ -68,9 +67,9 @@ class MainView(ListView):
         return Level.objects.all()
 
     def get_context_data(self, *, object_list=None, **kwargs):
+        c_def = self.get_user_context(title="EnApp")
         context = super().get_context_data(**kwargs)
-        context['title'] = "EnApp"
-        return context
+        return dict(list(context.items())+list(c_def.items()))
 
 
 def GetAnswer( request):
@@ -122,12 +121,32 @@ class ProfileUser(DataMixin, TemplateView):
         user = context['user'] = UserProfile.objects.get(user=self.request.user)
         c_def = self.get_user_context(title=user.user_name)
         answers = user.correct + user.incorrect
+        if answers:
+            context["correct"] = (user.correct/answers)*100
+            context["incorrect"] = (user.incorrect/answers)*100
+        else:
+            context["correct"] = 0
+            context["incorrect"] = 0
         context['user'] = user
-        context["correct"] = (user.correct/answers)*100
-        context["incorrect"] = (user.incorrect/answers)*100
         return dict(list(context.items())+list(c_def.items()))
 
-
+class ProfileUsers(DataMixin, TemplateView):
+    template_name = 'home/PreviewUser.html'
+    model = UserProfile
+    pk_url_kwarg = 'pk'
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = context['user'] = UserProfile.objects.get(pk=kwargs['pk'])
+        c_def = self.get_user_context(title=user.user_name)
+        answers = user.correct + user.incorrect
+        if answers:
+            context["correct"] = (user.correct/answers)*100
+            context["incorrect"] = (user.incorrect/answers)*100
+        else:
+            context["correct"] = 0
+            context["incorrect"] = 0
+        context['user'] = user
+        return dict(list(context.items())+list(c_def.items()))
 
 @login_required
 @transaction.atomic

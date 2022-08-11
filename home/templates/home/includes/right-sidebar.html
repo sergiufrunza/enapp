@@ -1,6 +1,20 @@
 {% block content %}
+<div class="top_users">
+<span class="title_sidebar">TOP 5 USERS</span>
+{% for t in top %}
+    <div class="top" >
+    <a href="{{ t.get_absolute_url }}">
+        <img src="{{ t.avatar.url }}" alt="" class="top_img">
+    </a>
+        <div class="top_info">
+            <span class="top_name">{{ t.user_name }}</span>
+            <span class="top_correct">answers {{ t.correct }}</span>
+        </div>
 
+    </div>
 
+{% endfor %}
+</div>
 
 
 

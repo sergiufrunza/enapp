@@ -4,7 +4,7 @@
     {% if request.user.is_authenticated %}
     <div class="container_level">
     {% for lev in level %}
-        <a href="{{lev.det_absolute_url}}">
+        <a href="{{lev.get_absolute_url}}">
         <div class="level" data-before={{lev.nr_level}} >
         <span class="id_level">{{lev.nr_level}}</span>
             <span class="description">{{lev.description_level}}</span>

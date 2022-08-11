@@ -11,5 +11,6 @@ urlpatterns = [
     re_path(r'answer-mgFWETBrxIzdJwwA/', GetAnswer),
     path('Profile/', ProfileUser.as_view(), name='Profile'),
     path('EditProfile/', EditProfileUser, name='EditProfile'),
-    path('Level/<int:lvl>/', LevelView.as_view(), name="Level")
+    path('Level/<int:lvl>/', LevelView.as_view(), name="Level"),
+    path('User/<int:pk>/', ProfileUsers.as_view(), name="User")
 ]

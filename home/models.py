@@ -27,15 +27,19 @@ class UserProfile(models.Model):
     def save(self, *args, **kwargs):
         super().save()
 
-        def crop_center(pil_img, crop_width: int, crop_height: int):
+        def crop_center(pil_img, crop):
             img_width, img_height = pil_img.size
-            return pil_img.crop(((img_width - crop_width) // 2,
-                                 (img_height - crop_height) // 2,
-                                 (img_width + crop_width) // 2,
-                                 (img_height + crop_height) // 2))
-        im = Image.open(self.avatar.path)
-        im_new = crop_center(im, 500,500 )
-        im_new.save(self.avatar.path)
+            return pil_img.crop(((img_width - crop) // 2,
+                             (img_height - crop) // 2,
+                             (img_width + crop) // 2,
+                             (img_height + crop) // 2))
+
+        img = Image.open(self.avatar.path)
+        img_new = crop_center(img, min(img.size))
+        img_new.save(self.avatar.path)
+
+    def get_absolute_url(self):
+        return reverse('User', kwargs={'pk': self.pk})
 
 
 @receiver(post_save, sender=User)
@@ -53,5 +57,5 @@ class Level(models.Model):
     nr_level = models.IntegerField()
     description_level = models.CharField(max_length=255,  blank=True, null=True)
 
-    def det_absolute_url(self):
+    def get_absolute_url(self):
         return reverse('Level', kwargs={'lvl': self.pk})

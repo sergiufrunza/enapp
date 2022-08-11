@@ -831,3 +831,62 @@ input[type="file" i]::before{
 	font-weight: 600;
 	color: white;
 }
+.title_sidebar{
+	font-family: var(--main-font);
+	font-size: 1.5vw;
+	font-weight: 600;
+	color: white;
+	margin-bottom: 20px;
+
+}
+.top_users{
+	width: 85%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: start;
+	margin-top: 50px;
+}
+.top:first-child{
+	position: relative;
+	border-radius: 10px;
+	border: 1px solid var(--blue);
+	padding: 5px 0 5px 5px;
+}
+.top:first-child:before{
+	content: "TOP 1 ";
+	position: absolute;
+	font-family: var(--main-font);
+	font-size: 2vw;
+	font-weight: 700;
+	right:-5px;
+	top: -1.5vw;
+	color:var(--text-color);
+	opacity: 0.1;
+}
+.top{
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	margin-bottom: 20px;
+	width: 100%;
+}
+.top_img{
+	height: 3vw;
+	width: 3vw;
+	border-radius: 5px;
+	border: 1px solid var(--text-color);
+}
+.top_info{
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: center;
+	margin-left: 15px;
+}
+.top_name, .top_correct{
+	font-family: var(--main-font);
+	font-size: 1vw;
+	font-weight: 600;
+	color: white;
+}

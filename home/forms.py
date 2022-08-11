@@ -8,7 +8,7 @@ class RegisterUserForm(UserCreationForm):
     username = forms.CharField(label='Login', widget=forms.TextInput(attrs={'class': 'form-input'}))
     password1 = forms.CharField(label='Password1', widget=forms.PasswordInput(attrs={'class': 'form-input pass', 'id': 'pass1'}))
     password2 = forms.CharField(label='Password2', widget=forms.PasswordInput(attrs={'class': 'form-input pass', 'id': 'pass2'}))
-
+    field_order = ['username', 'password1', 'password2']
 
     class Meta:
         model = User
@@ -19,6 +19,7 @@ class AuthenticationFormPers(AuthenticationForm):
     username = forms.CharField(label='Login', widget=forms.TextInput(attrs={'class': 'form-input'}))
     password = forms.CharField(label='Password',
                                widget=forms.PasswordInput(attrs={'class': 'form-input pass', 'id': 'pass1'}))
+    field_order = ['username', 'password']
 
     class Meta:
         model = User
@@ -39,3 +40,4 @@ class ProfileDate(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['user_name', 'user_status', 'avatar']
+
